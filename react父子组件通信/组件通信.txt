@@ -1,0 +1,57 @@
+组件通信react
+
+
+// 父组件向子组件传值
+const child = ()=>{
+	return <div>
+	
+	</div>
+}
+
+
+const parent = ()=>{
+	const [name,setName]= useState("Tom")
+	return (
+		<child name={name} />
+	)
+
+}
+
+
+
+
+// 子组件向父组件传值
+// 思路: 
+		1.利用回调函数 父组件提供回调 
+		2.子组件调用 
+		3.将要传递的数据作为回调函数的参数
+		
+		
+核心就是: 在父组件中顶一个一个接收子组件的方法  getMsg()
+		  然后把这个 getMsg 以属性的方法传递给子组件 
+		  在子组件	 handleClick方法中调用这个 父组件传递过来的方法
+		  然后在父组件中就可以接收到子组件传递过来的属性
+		
+const child = ()=>{
+    const [name,setName] = useState("tom")
+	const handleClick = ()=>{
+		props.getMsg(name)
+	}
+	return <div onClick={handleClick}>
+	
+	</div>
+}
+
+
+const parent = ()=>{
+	const getMsg = (data)=>{
+		console.log("接收到了子组件传递过来的数据",data)
+	}
+	return (
+		<child getMsg={getMsg} />
+	)
+
+}
+
+
+
