@@ -1,0 +1,52 @@
+
+
+子组件改变父组件
+	this.$parent.money = 10
+
+
+
+
+
+
+
+
+
+
+<parent>
+	// 点击 click 父组件 money+10  子组件money-10
+	<child :money.sync ="money" @click="click" ref="child"/>
+	
+	
+	// 点击 click1 父组件 向所有子组件的个数 * 10  所有子组件分别money-10
+	
+	
+	<allChild :money.sync ="money" @click="click1" ref="allChild" />
+	
+	
+	<child1 />
+	
+	
+
+</parent>
+script{
+	money,
+	click(){
+			this.money+= 10
+			this.$refs.child.money -= 10
+	},
+	click1(){
+		this.money += this.$children.length * 10
+		this.$children.forEach(k=>{
+			k.monry -= 10
+		})
+	}
+}
+
+
+
+
+<child @update.money="money">
+</child>
+script{
+	money:"100"
+}

@@ -1,0 +1,37 @@
+例子1
+	<father>
+	
+	
+	
+		<son ref="son"></son>
+	</father>
+
+	正常的操作 引入son 到父组件 father 并且注册
+		然后在父组件中通过方法就可以调用son 组件中的内容
+		
+		// title  type 都为son 组件中的熟悉
+		
+		// 修改的值的方法需要在 ￥nextTick 中修改
+		
+		change(){
+			this.dialogVisible = true 
+			this.$nextTick(()=>{
+					this.$refs["son"].title ='123'	
+					this.$refs["son"].type ='123'
+			})
+		}
+		
+		
+
+
+	通过 ref 调用子组件方法  本质和上面差不多	
+		
+例子2
+	https://blog.csdn.net/weixin_45547638/article/details/123399398
+
+
+
+
+
+
+
